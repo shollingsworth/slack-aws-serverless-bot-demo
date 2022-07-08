@@ -2,6 +2,7 @@
 **/.serverless
 **/*.tfstate
 tf/.terraform/
+tf/plan.out
 backend/layer/
 node_modules/
 .in_secret
