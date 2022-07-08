@@ -17,7 +17,7 @@ def get_bucket() -> Bucket:
     return session.resource("s3").Bucket(config.BUCKET)  # type: ignore
 
 
-def upload_github_event_json_to_s3(
+def upload_to_s3(
     event: str,
     action: str,
     headers: dict,
@@ -34,4 +34,4 @@ def upload_github_event_json_to_s3(
         Key=key,
         Body=json.dumps(json_data),
     )
-    LOG.info(f"Uploaded {key} to S3")
+    LOG.info("Uploaded %s to S3", key)

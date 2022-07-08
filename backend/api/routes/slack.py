@@ -92,7 +92,7 @@ def help_command(context: BoltContext, payload: Dict[str, Any]):
     context.ack(
         f"""
     *Slack Slash Command Was Executed!*
-    Hello <@{{{context.user_id}}}>!
+    Hello <@{context.user_id}>!
     """
     )
     print(json.dumps(payload, indent=4, separators=(",", " : ")))
