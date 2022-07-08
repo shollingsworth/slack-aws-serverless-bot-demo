@@ -1,0 +1,22 @@
+{
+    "name": "slack-bot-demo",
+    "version": "1.0.0",
+    "main": "index.js",
+    "author": "Steven Hollingsworth <shollingsworth@barracuda.com>",
+    "license": "MIT",
+    "private": true,
+    "dependencies": {
+        "serverless-stack-output": "^0.2.3"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.16",
+        "serverless": "^3.17.0",
+        "serverless-certificate-creator": "^1.6.0",
+        "serverless-domain-manager": "^6.0.3",
+        "serverless-dynamodb-local": "^0.2.40",
+        "serverless-offline": "^8.7.0",
+        "serverless-plugin-diff": "^3.0.0",
+        "serverless-plugin-log-retention": "^2.0.0",
+        "serverless-plugin-warmup": "^7.1.0"
+    }
+}

@@ -1,0 +1,14 @@
+.secrets.json
+**/.serverless
+**/*.tfstate
+tf/.terraform/
+backend/layer/
+node_modules/
+.in_secret
+**/*.pyc
+backend/.warmup
+
+aws_resources.json
+serverless.json
+.in
+.out
