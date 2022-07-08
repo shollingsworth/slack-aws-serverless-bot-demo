@@ -1,6 +1,6 @@
 .secrets.json
 **/.serverless
-**/*.tfstate
+**/*.tfstate*
 tf/.terraform/
 tf/plan.out
 backend/layer/
