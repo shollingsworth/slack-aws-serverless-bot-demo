@@ -6,6 +6,7 @@
     "license": "MIT",
     "private": true,
     "dependencies": {
+        "got": "^12.1.0",
         "serverless-stack-output": "^0.2.3"
     },
     "devDependencies": {
