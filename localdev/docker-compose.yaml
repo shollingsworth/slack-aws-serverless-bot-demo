@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  backend_image:
+    image: demo-backend
+    profiles:
+      - build
+    build:
+      context: ../
+      dockerfile: localdev/backend.Dockerfile
+      args:
+        UID: "${UID?UID Environment Variable required}"
+
+  layer:
+    image: demo-backend
+    profiles:
+      - layer
+    volumes:
+      - ../:/home/user/app
+    command: "/home/user/app/bin/gen_layer.sh"

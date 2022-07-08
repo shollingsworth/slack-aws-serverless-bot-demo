@@ -1,0 +1,82 @@
+service: ${self:custom.prefix}-backend
+
+configValidationMode: error
+frameworkVersion: "2 || 3"
+
+provider:
+  name: aws
+  region: ${opt:region}
+  stage: ${opt:stage}
+  runtime: python3.9
+  stackName: ${self:custom.prefix}-backend
+  httpApi:
+    cors: true
+  timeout: 10
+  memorySize: 128
+  stackTags: ${file(../config.json):default_tags}
+  iam:
+    role: ${file(../aws_resources.json):role}
+  environment:
+    REGION: ${opt:region}
+    LOG_LEVEL: ${env:LOG_LEVEL, "INFO"}
+    DEBUG: false
+    NAMESPACE: ${self:custom.prefix}
+    SLACK_COMMAND: ${file(../config.json):slack_slash_command}
+    STAGE: ${opt:stage}
+    BUCKET: ${file(../aws_resources.json):bucket}
+
+  logs:
+    websocket:
+      level: INFO
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-log-retention
+  - serverless-plugin-warmup
+  - serverless-plugin-diff
+  - serverless-stack-output
+
+custom:
+  logRetentionInDays: 30
+  prefix: ${file(../config.json):application_namespace}
+  warmup:
+    default:
+      enabled: true
+      name: ${self:custom.prefix}-warmup
+      role: ${file(../aws_resources.json):role}
+      verbose: false # Disable the logs
+      logRetentionInDays: 7
+      prewarm: true # Run WarmUp immediately after a deploymentlambda
+
+  serverless-offline:
+    host: 0.0.0.0
+    httpPort: 4000
+  output:
+    # handler: scripts/output.handler # Same syntax as you already know
+    file: ../serverless.json # 
+
+layers:
+  backend:
+    name: ${self:custom.prefix}-layer
+    path: layer
+
+package:
+  individually: true
+
+functions:
+  web:
+    package:
+      patterns:
+        # exclude all
+        - "!**/*"
+        # but
+        - "hook.py"
+        - "api/**/*.py"
+    handler: hook.handler
+    layers:
+      - !Ref BackendLambdaLayer
+
+    events:
+      - httpApi:
+          method: "ANY"
+          path: "/{proxy+}"

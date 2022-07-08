@@ -1,0 +1,21 @@
+{
+    "application_namespace": "slack-demo",
+    "slack_slash_command": "slackdemo",
+    "slack_app_name": "Slack Demo",
+    "slack_app_description": "A simple Slack app to demonstrate the Slack API",
+    "region": "us-east-2",
+    "default_tags": {
+        "application-name": "slack-demo-app-webhook",
+        "bn-business-unit": "Foo",
+        "bn-component": "TODO",
+        "bn-contact": "team@company.com",
+        "bn-environment": "production:infrastructure",
+        "bn-expense-class": "tooling",
+        "bn-infrastructure": "build",
+        "bn-product": "demo",
+        "bn-public-facing": "world",
+        "cost-center": "TODO",
+        "standby": "no",
+        "tier": "edge"
+    }
+}

@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "slack-demo"
+version = "0.1.0"
+description = ""
+authors = ["Steven Hollingsworth <shollingsworth@barracuda.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+slack-bolt = "^1.14.0"
+mangum = "^0.15.0"
+boto3 = "1.23.9"
+aws-lambda-powertools = "1.25.10"
+mypy-boto3-s3 = "^1"
+requests = "2.27.1"
+
+[tool.poetry.dev-dependencies]
+pylint = "^2.14.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pyright]
+pythonVersion = "3.9"
+strict = true
+reportOptionalMemberAccess = false
+reportIncompatibleMethodOverride = true
+reportIncompatibleVariableOverride = true
+reportMissingTypeStubs = false
