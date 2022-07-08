@@ -23,9 +23,10 @@ edit [./config.json](./config.json) and adjust the values as needed
 
 ## Initialize Environment
 
-### Set your AWS REGION
+### Set your AWS REGION and UID (for docker layer generation)
 ```
 export AWS_REGION="us-east-x"
+export UID="$(id -u)"
 ```
 
 ### Poetry
