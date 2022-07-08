@@ -34,7 +34,6 @@ plugins:
   - serverless-plugin-log-retention
   - serverless-plugin-warmup
   - serverless-plugin-diff
-  - serverless-stack-output
 
 custom:
   logRetentionInDays: 30
@@ -51,9 +50,6 @@ custom:
   serverless-offline:
     host: 0.0.0.0
     httpPort: 4000
-  output:
-    # handler: scripts/output.handler # Same syntax as you already know
-    file: ../serverless.json # 
 
 layers:
   backend:

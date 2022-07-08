@@ -5,11 +5,8 @@
     "author": "Steven Hollingsworth <shollingsworth@barracuda.com>",
     "license": "MIT",
     "private": true,
-    "dependencies": {
-        "got": "^12.1.0",
-        "serverless-stack-output": "^0.2.3"
-    },
     "devDependencies": {
+        "got": "^12.1.0",
         "nodemon": "^2.0.16",
         "serverless": "^3.17.0",
         "serverless-certificate-creator": "^1.6.0",

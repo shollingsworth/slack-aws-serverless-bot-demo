@@ -1,5 +1,9 @@
 # Demo Slack Bot app
 
+## When the app is installed and finished you should be able to see something like this.
+![screen demo](./media/command_demo.gif)
+
+
 ## Required software
 * gnu make
 * terraform
