@@ -8,7 +8,7 @@ CONF="${DIR}/config.json"
 SCONF="${DIR}/serverless.json"
 
 APP_NAME="$(jq -r '.slack_app_name' "$CONF")"
-APP_DESCRTIPTION="$(jq -r '.slack_app_description' "$CONF")"
+APP_DESCRIPTION="$(jq -r '.slack_app_description' "$CONF")"
 APP_SLACK_COMMAND="$(jq -r '.slack_slash_command' "$CONF")"
 URL="$(jq -r '.HttpApiUrl' "$SCONF")"
 
@@ -16,7 +16,7 @@ URL="$(jq -r '.HttpApiUrl' "$SCONF")"
 TEMPLATE=$(cat <<EOF
 display_information:
   name: "${APP_NAME}"
-  description: "${APP_DESCRTIPTION}"
+  description: "${APP_DESCRIPTION}"
   background_color: "#383038"
 features:
   app_home:

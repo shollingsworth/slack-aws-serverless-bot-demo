@@ -6,10 +6,15 @@
 
 ## Required software
 * gnu make
+* nodejs 
+* npm
 * terraform
 * tfswitch
 * docker
-* docker-compose
+* docker-compose ~> 1.29
+* python ~> 3.9
+* python-poetry
+* aws cli
 
 
 # Pre Setup (making this your own)
@@ -30,7 +35,7 @@ export UID="$(id -u)"
 ```
 
 ### Poetry
-`poetry upgrade`
+`poetry update`
 
 ## Run terraform
 ```
@@ -41,20 +46,28 @@ terraform plan -out plan.out
 terraform apply plan.out
 ```
 
-## initialize a blank ssm secret
+## Initialize a blank ssm secret
 ```
-./bin/crypt.sh create
+./bin/crypt.sh save
+```
+Running this script the first time will create an empty `.secrets.json` file in your project, and then populate it with a secrets template. These secrets are put in the parameter store in AWS SSM. 
+These values will be filled in and updated in AWS SSM later.
+
+## Install npm packages
+```
+npm install
 ```
 
-## perform first deploy of of backend (needed to create slack app manifest)
+## Build backend layer
 ```
-make deploy_all
+make backend_layer
 ```
 
 ## Generate slack manifest
 ```
-make  gen_slack_manifest
+make gen_slack_manifest
 ```
+This will generate a slack manifest template for you to create your Slack App and generate the secrets stored in the AWS SSM Parameter store.
 
 ## Setup Slack App
 * Create two channels in your workspace, one as a primary channel for your app,
@@ -73,6 +86,8 @@ make  gen_slack_manifest
 * Copy the text in `./slack/manifest.yaml` generated from the previous command,
     and past into the window
     * ![Copy paste generated manifest data](./media/create_new_paste_manifest.png)
+
+* Change all the `url` keys to `http://localhost` - this will be updated later.
 
 * Finalize your app creation
     * ![Finalize](./media/create_new_finalize.png)
@@ -102,7 +117,19 @@ of the application. You secrets json file should look like the first image.
 ./bin/crypt.sh save
 ```
 
-* Once they are saved, go your "App Manifest" section, and click the verify
+After your secrets are saved, deploy the backend;
+```
+make deploy_all
+```
+
+Now that the backend is in place, you can generate an updated manifest with the URL for your App's deployment;
+```
+make gen_slack_manifest
+```
+
+Copy your new `slack/manifest.yml` file into your App's configuration.
+
+* Once the backend is built and your manifest is updated, go your "App Manifest" section, and click the verify
 location
     * ![verify](./media/verify_endpoint.png)
 
