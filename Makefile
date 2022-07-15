@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := help
 .EXPORT_ALL_VARIABLES:
 UID = $(shell id -u)
-AWS_REGION = us-east-2
+REGION = us-east-2
 PROJECT_NAME = $(shell basename $(PWD))
 PREFIX = $(shell jq -r '.application_namespace' < config.json)
 
