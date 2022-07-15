@@ -1,6 +1,6 @@
 FROM python:3.9-slim-bullseye
 
-ARG UID=1000
+ARG UID
 
 RUN test "${UID}" || { echo "Failed to run with UID ${UID}"; exit 1; }
 RUN apt update && apt install -y python3-pip curl
